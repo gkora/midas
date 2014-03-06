@@ -43,8 +43,6 @@ exports.jobpost = function(req, res) {
 	_.extend(newJob, req.body);
 
 	var fileDetails = _.clone(req.files);
-	console.dir(req.files);
-	console.dir(req.body);
 	fileDetails.inputFile = _.omit(fileDetails.inputFile, 'ws');
 	_.extend(newJob, fileDetails);
 
@@ -135,8 +133,6 @@ exports.jobpost = function(req, res) {
 				var section = CONFIG.configSection;
 				var configFile = CONFIG.configFileName;
 
-				console.log(__dirname);
-				console.dir(CONFIG);
 
 				var config = {};
 
@@ -158,7 +154,6 @@ exports.jobpost = function(req, res) {
 					config.Break_rings = req.body.breakRings;
 					config.Fragmentation_Depth = req.body.fragmentationDepth
 					config.Number_of_Processes = req.body.procs;
-					console.dir(config);
 
 					fs.writeFile(
 							path.join(newJob.jobDirectory, configFile ), 
@@ -190,6 +185,14 @@ exports.jobpost = function(req, res) {
 						callback(null, 'New job saved to the DB');
 					}
 				});
+			},
+
+			// Execute the job.
+			function(callback) {
+
+				if ( req.body.jobType === 'Search' ) {
+					newJob.statuses.push( { state: 'Job execution started', time: new Date().getTime() } );
+				}
 			}
 			], 
 			function(error, results) {
@@ -207,10 +210,54 @@ exports.locate = function(req, res){
   res.render('locate'); 
 };
 
+exports.searchdone = function(req, res){
+
+	db.findOne({ id: req.body.id }, function (err, doc) {
+
+		if ( err ) {
+			console.log(err + ' : Error registering the job completion');
+		} else {
+			if ( doc ) {
+
+				doc.statuses.push( { state: 'Search job complete', time: new Date().getTime() } );
+			} else {
+				console.log(err + ' : Error registering the job completion');
+			}
+		}
+	});
+
+};
+
 exports.locatepost = function(req, res){
-  res.render('locateStatus', {id: req.body.id}); 
+
+	db.findOne({ id: req.body.id }, function (err, doc) {
+
+		if ( err ) {
+			console.log(err);
+			res.render('locateStatus', {id: null, job: null}); 
+		} else {
+			if ( doc ) {
+			res.render('locateStatus', {id: req.body.id, job: doc}); 
+			} else {
+				res.render('locateStatus', {id: null, job: null}); 
+			}
+		}
+	});
+
 };
 
 exports.locateWithId = function(req, res){
-  res.render('locateStatus', {id: req.params.id}); 
+	
+	db.findOne({ id: req.params.id }, function (err, doc) {
+		if ( err ) {
+			console.log(err);
+			res.render('locateStatus', {id: null, job: null}); 
+		} else {
+			if ( doc ) {
+			res.render('locateStatus', {id: req.params.id, job: doc}); 
+			} else {
+				res.render('locateStatus', {id: null, job: null}); 
+			}
+		}
+	});
 };

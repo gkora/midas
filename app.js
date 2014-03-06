@@ -10,6 +10,8 @@ var path = require('path');
 
 var app = express();
 
+app.locals.moment = require('moment');
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +38,7 @@ app.post('/job', routes.jobpost);
 app.get('/locate/:id', routes.locateWithId);
 app.get('/locate', routes.locate);
 app.post('/locate', routes.locatepost);
+app.post('/searchdone', routes.searchdone);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

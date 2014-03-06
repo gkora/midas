@@ -1,102 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Guruprasad Kora">
-
-<title>ORNL UniFam</title>
-
-<!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/font-awesome.min.css" rel="stylesheet">
-
-<!-- Add custom CSS here -->
-<link href="/css/datasettings.css" rel="stylesheet">
-</head>
-
-<body>
-
-<div class="brand">UniFam</div>
-<div class="address-bar">Pipeline to Annotate Proteins</div>
-
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.html"></a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
-				<li><a href="/job">Submit a Job</a></li>
-				<li><a href="/locate">Locate Job</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container -->
-</nav>
-
+<% include header.ejs %>
     <div class="container">
-
       <div class="row">
         <div class="box">
           <div>
             <hr>
-            <h2 class="intro-text text-center">Job <strong>Status</strong></h2>
+            <h2 class="intro-text text-center">Searching <strong>Job</strong></h2>
             <hr>
 						<div class='text-center'>
-							<i class="fa fa-search fa-2x"> Searching Job </i><br/></br>
+							<%
+							if (id) {
+								var dd = moment(job.submitTime).fromNow();
+							%>
 							<strong>Job Found</strong><br/>
-							Job Id  <span class="label label-primary"><%= id %> </span> <br/></br>
-							<h2> Current Status </h2>
-							<center>
-								<table class='text-center pull-center'>
-									<tr>
-										<td class='text-success'><i class="fa fa-check-square-o"></i></td>
-										<td style='padding:0 30px 0 30px;'><i class="fa fa-arrow-right"></i></td>
-										<td class='text-muted'><i class="fa fa-square-o"></i></td>
-										<td style='padding:0 30px 0 30px;'><i class="fa fa-arrow-right"></i></td>
-										<td class='text-muted'><i class="fa fa-square-o"></i></td>
-										<td style='padding:0 30px 0 30px;'><i class="fa fa-arrow-right"></i></td>
-										<td class='text-muted'><i class="fa fa-square-o"></i></td>
-									</tr>
-									<tr>
-										<td class='text-success'>Job Submitted</td>
-										<td>&nbsp;</td>
-										<td class='text-muted'>Job In Queue</td>
-										<td>&nbsp;</td>
-										<td class='text-muted'>Job In Execution</td>
-										<td>&nbsp;</td>
-										<td class='text-muted'>Job Execution Complete</td>
-									</tr>
-								</table>
-							</center>
+							Submited <span class="label label-primary"><%= dd %> </span> <br/></br>
+							
+							<div> <!-- job inputs -->
+								<h5>Job Inputs</h5>
+								<div>
+									Job Type <strong><%= job.jobType %></strong> 
+									<br/>
+									Name <strong><%= job.name %> </strong>  <span class='small muted'><%= job.org %> </span> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+									Email <strong><%= job.email %></strong> 
+									<br/> <br/> <br/> <br/> 
+								</div>
+
+							</div> <!-- job inputs -->
+							<div> <!-- start of current status -->
+								<h6> Current Status </h6><br/>
+									<%
+									console.log(job.statuses);
+									for (var i = 0; i < job.statuses.length; i++) {
+										var status = job.statuses[i];
+										console.log(status);
+									%>
+										<div class='text-left col-sm-offset-5'>
+											<span class='text-success'><%= moment(status.time).fromNow() %> <i class="fa fa-check-circle"></i> </span> &nbsp; &nbsp; &nbsp; &nbsp;     <%= status.state %>
+											<br/>
+											&nbsp; &nbsp; &nbsp; &nbsp;     <i class="fa fa-arrow-down"></i>
+											<br/>
+										</div>
+									<% } %>
+							</div>
+								<% } else { %>
+								<strong>Job Not Found</strong>, Would you like to try again! <br/><br/>
+
+								<form id='locate' class="form-horizontal" enctype="multipart/form-data" method='post' action='/locate'>
+									<fieldset>
+
+										<div class='form-group'>
+											<div class='col-md-6 col-md-offset-3'>
+												<p class="input-group">
+												<span class="input-group-addon">MIDAS Job Id</span>
+													<input type="text" class="form-control input-lg" name="id" placeholder="" />
+													</p>
+													<p class="help-block text-center"><small>We'll try to locate your job. Hang tight!</small></p>
+													<p class="text-center">
+													<button type="submit" class="btn btn-success btn-lg">Fetch the Job Details</button>
+													</p>
+												</span>
+											</div>
+										</div>
+
+
+									</fieldset>
+								</form>
+							</div>
+							<!-- End of current status -->
+
+							<% } %>
 							
 						</div>
 
           </div>
-        </div>
-      </div>
+				</div> <!-- /.box -->
+			</div> <!-- /.row -->
 
     </div><!-- /.container -->
 
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<p>Copyright &copy; ORNL 2013</p>
-			</div>
-		</div>
-	</div>
-</footer>
+<% include footer.ejs %>
 
 <!-- JavaScript -->
 <script src="js/jquery-1.10.2.js"></script>
