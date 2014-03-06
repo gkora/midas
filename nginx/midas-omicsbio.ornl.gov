@@ -6,8 +6,8 @@ upstream app_yourdomain {
 # the nginx server instance
 server {
     listen 0.0.0.0:80;
-    server_name unifam.ornl.gov unifam;
-    access_log /var/log/nginx/unifam.ornl.gov.log;
+    server_name midas-omicsbio.ornl.gov midas-omicsbio;
+    access_log /var/log/nginx/midas-omicsbio.ornl.gov.log;
 
     # pass the request to the node.js server with the correct headers and much more can be added, see nginx config options
     location / {

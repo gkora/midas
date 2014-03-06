@@ -1,48 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Guruprasad Kora">
-
-<title>ORNL UniFam</title>
-
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.css" rel="stylesheet">
-
-<!-- Add custom CSS here -->
-<link href="css/datasettings.css" rel="stylesheet">
-</head>
-
-<body>
-
-<div class="brand">UniFam</div>
-<div class="address-bar">Pipeline to Annotate Proteins</div>
-
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.html"></a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
-				<li><a href="/job">Submit a Job</a></li>
-				<li><a href="/locate">Locate Job</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container -->
-</nav>
-
+<% include header.ejs %>
 <div class="container">
 
 	<div class="row">
@@ -77,7 +33,7 @@
 						<span class="icon-next"></span>
 					</a>
 				</div>
-				<h1><small>Welcome to</small><br><span class="brand-name">UniFam Protein Annotation Pipeline</span><hr class="tagline-divider"><small></small></h1>
+				<h1><small>Welcome to</small><br><span class="brand-name"><b>Midas</b> A Database-Searching Algorithm for Metabolite Identification in Metabolomics</span><hr class="tagline-divider"><small></small></h1>
 			</div>
 		</div>
 	</div>
@@ -86,20 +42,12 @@
 		<div class="box">
 			<div class="col-lg-12">
 				<hr>
-				<h2 class="intro-text text-center">UniFam <strong>Protein Annotatoin Pipeline</strong></h2>
+				<h2 class="intro-text text-center">Midas <strong>A Database-Searching Algorithm for Metabolite Identification in Metabolomics</strong></h2>
 				<hr>
 				<hr class="visible-xs">
-				<p>A pipeline to annotate proteins with newly developed protein family database (UniFam) and to predict metabolic pathways for a genome is made available to users. <strong>UniFam</strong> is a new protein family database based on proteins in UniProt including SwissProt and Trembl. It annotates proteins on the full sequence level instead of on the domain level. 
-				</p>
-
 				<p>
-				User can either give a list of proteins as input for annotation to be used in downstream analysis, or provide a fully sequenced genome. In the latter case, Prodigal will be used to predict protein-coding genes in the genome and the coded proteins. UniFam is then used to annotate all these proteins. If desired, the pipeline can also predict metabolic pathways using PathoLogic module of Pathway-tools, with the all annotated proteins in a genome.
+					A database searching approach can be used for metabolite identification in metabolomics by matching the measured tandem mass spectra against the predicted fragments of metabolites in a database. Here we present the <strong>MIDAS</strong> algorithm (Metabolite Identification via Database Searching) freely available at http://midas.omicsbio.org. To evaluate a metabolite-spectrum match (MSM), MIDAS first enumerates possible fragments from a metabolite by systematic bond dissociation, then calculates the plausibility of the fragments based on their fragmentation pathways, and finally scores the MSM to reflect how well the metabolite explains the spectrum. MIDAS was designed to search high-resolution tandem mass spectra acquired on time-of-flight or Orbitrap against a large metabolite database in an automated and high-throughput manner.
 				</p>
-
-				<p>
-				The output of the pipeline is a table of proteins with their function annotations, and a list of inferred pathways if specified.
-				</p>
-
 			</div>
 		</div>
 	</div>
@@ -107,15 +55,7 @@
 
 </div><!-- /.container -->
 
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<p>Copyright &copy; ORNL 2013</p>
-			</div>
-		</div>
-	</div>
-</footer>
+<% include footer.ejs %>
 
 <!-- JavaScript -->
 <script src="js/jquery-1.10.2.js"></script>

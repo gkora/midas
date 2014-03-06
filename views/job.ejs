@@ -1,62 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Guruprasad Kora">
-
-<title>ORNL UniFam</title>
-
-<!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.css" rel="stylesheet">
-
-<!-- Add custom CSS here -->
-<link href="/css/datasettings.css" rel="stylesheet">
-</head>
-
-<body>
-
-<div class="brand">UniFam</div>
-<div class="address-bar">Pipeline to Annotate Proteins</div>
-
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.html"></a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
-				<li><a href="/job">Submit a Job</a></li>
-				<li><a href="/locate">Locate Job</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container -->
-</nav>
-
+<% include header.ejs %>
     <div class="container">
 
       <div class="row">
         <div class="box">
           <div>
             <hr>
-            <h2 class="intro-text text-center">Annotation Pipeline <strong>Inputs</strong></h2>
+            <h2 class="intro-text text-center">Workflow <strong>Inputs</strong></h2>
             <hr>
             <p>
-						User can either give a list of proteins as input for annotation to be used in downstream analysis, 
-						or provide a fully sequenced genome. In the latter case, Prodigal will be used to predict protein-coding 
-						genes in the genome and the coded proteins. UniFam is then used to annotate all these proteins. If desired, 
-						the pipeline can also predict metabolic pathways using PathoLogic module of Pathway-tools, with the 
-						all annotated proteins in a genome.
+						Users can submit jobs for either Searching, Filtering or Visualizing metabolites. Based on the user selection,
+						a set of inputs will be collected before the job is submitted for execution.  
 						</p>
 						<hr>
 						<form id='jobInputs' class="form-horizontal" enctype="multipart/form-data" method='post' action='/job'>
@@ -89,43 +42,258 @@
 									</div>
 								</div>
 
+
 								<hr>
+
 								<!-- Select Basic -->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="fileType">Input File Type</label>
+									<label class="col-md-3 control-label" for="jobType">Job Type</label>
 									<div class="col-md-6">
-										<select id="fileType" name="fileType" class="form-control">
-											<option value="proteins">List of Proteins</option>
-											<option value="fasta">Fully Sequenced Genome</option>
+										<select id="jobType" name="jobType" class="form-control">
+											<option value='Search' >Search</option>
+											<option value='Filter' >Filter</option>
+											<option value='Visualize' >Visualize</option>
+											<option value='FilterVisualize'>Filter and Visualize</option>
+											<option value='SearchFilter'>Search and Filter</option>
+											<option value='SearchFilterVisualize'>Search, Filter and Visualize</option>
 										</select>
 									</div>
 								</div>
+								<hr>
 
-								<!-- File Button --> 
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="inputFile">Input File</label>
-									<div class="col-md-4">
-										<input id="inputFile" name="inputFile" class="input-file" type="file" required='' >
-									</div>
-								</div>
+								<div id='searchParams'> <!-- Search parameters -->
 
-								<!-- Text input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="param1">Parameter 1</label>  
-									<div class="col-md-6">
-										<input id="param1" name="param1" type="text" placeholder="Parameter 1" class="form-control input-md">
-										<span class="help-block">Please enter input parameter 1</span>  
+									<!-- Select Basic -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="fileType">MS/MS Dataset Type</label>
+										<div class="col-md-6">
+											<select id="fileType" name="fileType" class="form-control">
+												<option value="FT2">FT2</option>
+												<option value="mzML">mzML</option>
+											</select>
+										</div>
 									</div>
-								</div>
 
-								<!-- Text input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="param2">Parameter 2</label>  
-									<div class="col-md-6">
-										<input id="param2" name="param2" type="text" placeholder="Parameter 2" class="form-control input-md">
-										<span class="help-block">Please enter input parameter 2</span>  
+									<!-- File Button --> 
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="inputFile">MS/MS Dataset Input File</label>
+										<div class="col-md-4">
+											<input id="inputFile" name="inputFile" class="input-file" type="file" required='' >
+										</div>
 									</div>
-								</div>
+
+									<!-- Select Basic -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="database">Metabolite Database</label>
+										<div class="col-md-6">
+											<select id="databaseType" name="database" class="form-control">
+												<option value="MetaCyc">MetaCyc</option>
+												<option value="Custom">Custom</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- File Button --> 
+									<div id='databaseInput' class="form-group" style='display:none;'>
+										<label class="col-md-3 control-label" for="databaseInputFile">Custom Database</label>
+										<div class="col-md-4">
+											<input id="inputFile" name="databaseInputFile" class="input-file" type="file"  >
+										</div>
+									</div>
+
+									<!-- Select Basic -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="polarity">Polarity</label>
+										<div class="col-md-6">
+											<select id="fileType" name="polarity" class="form-control">
+												<option value="positive">positive</option>
+												<option value="negative">negative</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="chargeState">Charge State</label>  
+										<div class="col-md-6">
+											<input id="param1" name="chargeState" type="text" value='1' disabled class="form-control input-md">
+											<span class="help-block">Please enter Charge State</span>  
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="massWindow">Parent Mass Window</label>  
+										<div class="col-md-6">
+											<input id="param1" name="massWindow" type="text" value='0' disabled class="form-control input-md">
+											<span class="help-block">Please enter Parent Mass Window</span>  
+										</div>
+									</div>
+
+									<!-- Multiple Checkboxes (inline) -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="positiveMass">Positive Ion Fragment Mass Windows</label>
+										<div class="col-md-6">
+											<label class="checkbox-inline" for="positiveMass-0">
+												<input type="checkbox" name="positiveMass" id="positiveMass-0" value="-1" >
+												-1
+											</label>
+											<label class="checkbox-inline" for="positiveMass-1">
+												<input type="checkbox" name="positiveMass" id="positiveMass-1" value="0" checked >
+												0
+											</label>
+											<label class="checkbox-inline" for="positiveMass-2">
+												<input type="checkbox" name="positiveMass" id="positiveMass-2" value="1" checked >
+												1
+											</label>
+											<label class="checkbox-inline" for="positiveMass-3">
+												<input type="checkbox" name="positiveMass" id="positiveMass-3" value="2" checked >
+												2
+											</label>
+											<label class="checkbox-inline" for="positiveMass-4">
+												<input type="checkbox" name="positiveMass" id="positiveMass-4" value="3">
+												3
+											</label>
+										</div>
+									</div>
+
+									<!-- Multiple Checkboxes (inline) -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="negativeMass">Negative Ion Fragment Mass Windows</label>
+										<div class="col-md-6">
+											<label class="checkbox-inline" for="negativeMass-0">
+												<input type="checkbox" name="negativeMass" id="negativeMass-0" value="-3">
+												-3
+											</label>
+											<label class="checkbox-inline" for="negativeMass-1">
+												<input type="checkbox" name="negativeMass" id="negativeMass-1" value="-2" checked >
+												-2
+											</label>
+											<label class="checkbox-inline" for="negativeMass-2">
+												<input type="checkbox" name="negativeMass" id="negativeMass-2" value="-1" checked >
+												-1
+											</label>
+											<label class="checkbox-inline" for="negativeMass-3">
+												<input type="checkbox" name="negativeMass" id="negativeMass-3" value="0" checked >
+												0
+											</label>
+											<label class="checkbox-inline" for="negativeMass-4">
+												<input type="checkbox" name="negativeMass" id="negativeMass-4" value="1">
+												1
+											</label>
+										</div>
+									</div>
+
+
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="parentIon">Mass Tolerance Parent Ion</label>  
+										<div class="col-md-6">
+											<input id="param1" name="parentIon" type="text" class="form-control input-md" required='' value='0.01'>
+											<span class="help-block">Please enter Mass Tolerance Parent Ion</span>  
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="fragmentIon">Mass Tolerance Fragment Ion</label>  
+										<div class="col-md-6">
+											<input id="param1" name="fragmentIon" type="text" class="form-control input-md" required='' value='0.01'>
+											<span class="help-block">Please enter Mass Tolerance Fragment Ion</span>  
+										</div>
+									</div>
+
+									<!-- Select Basic -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="breakRings">Break Rings</label>
+										<div class="col-md-6">
+											<select id="breakRings" name="breakRings" class="form-control">
+												<option>true</option>
+												<option>false</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- Select Basic -->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="fragmentationDepth">Fragmentation Depth</label>
+										<div class="col-md-6">
+											<select id="fragmentationDepth" name="fragmentationDepth" class="form-control">
+												<option value="2">2</option>
+												<option value="3" selected >3</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="procs">Number of Processors</label>  
+										<div class="col-md-6">
+											<input id="param1" name="procs" type="text" class="form-control input-md" value='4' disabled required=''>
+											<span class="help-block">Please enter Number of Processors</span>  
+										</div>
+									</div>
+								</div> <!-- End of search parameters -->
+
+
+								<div id='filterParams' style='display:none;'> <!-- Filter parameters -->
+									<!-- File Button --> 
+									<div class="form-group" id='inputForFilter'>
+										<label class="col-md-3 control-label" for="filterInputFile">MS/MS Dataset Input File</label>
+										<div class="col-md-4">
+											<input id="filterInputFile" name="filterInputFile" class="input-file" type="file" required='' >
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="scoreThre">Score Threshold</label>  
+										<div class="col-md-6">
+											<input id="param1" name="scoreThre" type="text" class="form-control input-md" required=''>
+											<span class="help-block">Please enter Score Threshold</span>  
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="spectralCountThre">Spectral Count Threshold</label>  
+										<div class="col-md-6">
+											<input id="param1" name="spectralCountThre" type="text" class="form-control input-md" required=''>
+											<span class="help-block">Please enter Spectral Count Threshold</span>  
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="explainPeakThre">Explain Peaks Threshold</label>  
+										<div class="col-md-6">
+											<input id="param1" name="explainPeakThre" type="text" class="form-control input-md" required=''>
+											<span class="help-block">Please enter Explain Peaks Threshold</span>  
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="deltaThre">Delta Threshold</label>  
+										<div class="col-md-6">
+											<input id="param1" name="deltaThre" type="text" class="form-control input-md" required=''>
+											<span class="help-block">Please enter Delta Threshold</span>  
+										</div>
+									</div>
+
+								</div> <!-- End Filter parameters -->
+
+								<div id='visualizationParams' style='display:none;'> <!-- visualization parameters -->
+									<div class="form-group" id='inputForViz'>
+										<label class="col-md-3 control-label" for="vizInputFile">MS/MS Dataset Input File</label>
+										<div class="col-md-4">
+											<input id="vizInputFile" name="vizInputFile" class="input-file" type="file" required='' >
+										</div>
+									</div>
+
+								</div> <!-- End visualization parameters -->
+
 
 								<!-- Button -->
 								<div class="form-group">
@@ -143,15 +311,7 @@
 
     </div><!-- /.container -->
 
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<p>Copyright &copy; ORNL 2013</p>
-			</div>
-		</div>
-	</div>
-</footer>
+		<% include footer.ejs %>
 
 <!-- JavaScript -->
 <script src="js/jquery-1.10.2.js"></script>
@@ -159,6 +319,43 @@
 <script src="js/bootstrap.js"></script>
 <script>
 	$('#jobInputs').validate();
+	$('#databaseType').on('change', function() {
+			if ( this.value === 'Custom' ) {
+			$('#databaseInput').show();
+			};
+	});
+	$('#jobType').on('change', function() {
+			if ( this.value === 'Search' ) {
+				$('#searchParams').show();
+				$('#filterParams').hide();
+				$('#visualizationParams').hide();
+			} else if ( this.value === 'Filter') {
+				$('#searchParams').hide();
+				$('#filterParams').show();
+				$('#visualizationParams').hide();
+			} else if ( this.value === 'Visualize') {
+				$('#searchParams').hide();
+				$('#filterParams').hide();
+				$('#visualizationParams').show();
+			} else if ( this.value === 'SearchFilterVisualize') {
+				$('#searchParams').show();
+				$('#filterParams').show();
+				$('#visualizationParams').show();
+				$('#inputForFilter').hide();
+				$('#inputForViz').hide();
+			} else if ( this.value === 'SearchFilter') {
+				$('#searchParams').show();
+				$('#filterParams').show();
+				$('#visualizationParams').hide();
+				$('#inputForFilter').hide();
+			} else if ( this.value === 'FilterVisualize') {
+				$('#searchParams').hide();
+				$('#filterParams').show();
+				$('#visualizationParams').show();
+				$('#inputForViz').hide();
+			}
+			
+	});
 </script>
 
 </body>

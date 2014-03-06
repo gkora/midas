@@ -1,6 +1,6 @@
 {
-  "name": "unifam",
-  "description": "unifam: UniFam is a new protein family database based on proteins in UniProt including SwissProt and Trembl",
+  "name": "midas",
+  "description": "midas: A Database-Searching Algorithm for Metabolite Identification in Metabolomics",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
     "nodemailer": "~0.6.0",
     "node-uuid": "~1.4.1",
     "config": "~0.4.35",
-    "fs-extra": "~0.8.1"
+    "fs-extra": "~0.8.1",
+    "yaml": "^0.2.3"
   }
 }
