@@ -11,6 +11,7 @@ var mkdir  = require('mkdirp');
 var path	 = require('path');
 var mail 	 = require('nodemailer');
 var fs 	 	 = require('fs-extra');
+var ini 	 = require('ini');
 
 var Datastore = require('nedb')
   , db = new Datastore({ filename: path.join(__dirname, '../', CONFIG.Database.location), autoload: true });
@@ -42,6 +43,8 @@ exports.jobpost = function(req, res) {
 	_.extend(newJob, req.body);
 
 	var fileDetails = _.clone(req.files);
+	console.dir(req.files);
+	console.dir(req.body);
 	fileDetails.inputFile = _.omit(fileDetails.inputFile, 'ws');
 	_.extend(newJob, fileDetails);
 
@@ -65,6 +68,30 @@ exports.jobpost = function(req, res) {
 			
 			// Move input file into the directory.
 			function(callback) {
+
+				if ( newJob.inputFile.originalFilename !== '' ) {
+					var copyDatabaseFile = fs.copySync(newJob.inputFile.path, path.join(newJob.jobDirectory, newJob.inputFile.name));
+					newJob.statuses.push( { state: 'Copied search input file into job directory', time: new Date().getTime() } );
+				}
+
+				if ( newJob.databaseInputFile.originalFilename !== '' ) {
+					var copyDatabaseFile = fs.copySync(newJob.databaseInputFile.path, path.join(newJob.jobDirectory, newJob.databaseInputFile.name));
+					newJob.statuses.push( { state: 'Copied database file into job directory', time: new Date().getTime() } );
+				}
+
+				if ( newJob.filterInputFile.originalFilename !== '' ) {
+					var copyDatabaseFile = fs.copySync(newJob.filterInputFile.path, path.join(newJob.jobDirectory, newJob.filterInputFile.name));
+					newJob.statuses.push( { state: 'Copied filter input file into job directory', time: new Date().getTime() } );
+				}
+
+				if ( newJob.vizInputFile.originalFilename !== '' ) {
+					var copyDatabaseFile = fs.copySync(newJob.vizInputFile.path, path.join(newJob.jobDirectory, newJob.vizInputFile.name));
+					newJob.statuses.push( { state: 'Copied viz input file into job directory', time: new Date().getTime() } );
+				}
+
+				callback(null, 'Copied files into job directory');
+
+				/*
 				fs.copy(newJob.inputFile.path, path.join(newJob.jobDirectory, newJob.inputFile.name), function (err) {
 					if (err) {
 						callback(err, null);
@@ -73,6 +100,7 @@ exports.jobpost = function(req, res) {
 						callback(null, 'Copied input file into job directory');
 					}
 				});
+				*/
 			},
 			
 			// Send email to the user
@@ -86,6 +114,9 @@ exports.jobpost = function(req, res) {
 					/*text: ""*/
 					html: body
 				}
+				// Take it out later'
+				callback(null, "Message sent: Dummy ");
+				/*
 				transport.sendMail(mailOptions, function(err, response){
 					if(err){
 						callback(err, null);
@@ -94,6 +125,59 @@ exports.jobpost = function(req, res) {
 						callback(null, "Message sent: " + response.message);
 					}
 				});
+				*/
+
+			},
+
+			// Create a properties file
+			function(callback) {
+
+				var section = CONFIG.configSection;
+				var configFile = CONFIG.configFileName;
+
+				console.log(__dirname);
+				console.dir(CONFIG);
+
+				var config = {};
+
+				if ( req.body.jobType === 'Search') {
+
+					if ( req.body.database === 'MetaCyc' ) {
+						config.Metabolite_Database = path.join(__dirname, CONFIG.metacycLocation);
+					} else {
+						config.Metabolite_Database = path.join(newJob.jobDirectory, req.files.databaseInputFile.originalFilename );
+					}
+
+					config.Default_Polarity = req.body.polarity;
+					config.Default_Charge_State = req.body.chargeState;
+					config.Parent_Mass_Windows = req.body.massWindow;
+					config.Positive_Ion_Fragment_Mass_Windows = req.body.positiveMass.toString();
+					config.Negative_Ion_Fragment_Mass_Windows = req.body.negativeMass.toString();
+					config.Mass_Tolerance_Parent_Ion = req.body.parentIon;
+					config.Mass_Tolerance_Fragment_Ions = req.body.fragmentIon;
+					config.Break_rings = req.body.breakRings;
+					config.Fragmentation_Depth = req.body.fragmentationDepth
+					config.Number_of_Processes = req.body.procs;
+					console.dir(config);
+
+					fs.writeFile(
+							path.join(newJob.jobDirectory, configFile ), 
+							ini.stringify(config, section), 
+							function(err) {
+
+						console.dir(err);
+						
+						if (err) {
+							callback(err, null);
+						} else {
+							newJob.statuses.push( { state: 'Job configuration file created', time: new Date().getTime() } );
+							callback(null, 'Job configuration file created');
+						}
+					});
+
+				} else {
+					callback(null, 'Job configuration file not required');
+				}
 
 			},
 

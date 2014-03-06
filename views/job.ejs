@@ -19,7 +19,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="name">Name</label>  
 									<div class="col-md-6">
-										<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
+										<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="" value='Guru'>
 										<span class="help-block">Please enter your name</span>  
 									</div>
 								</div>
@@ -28,7 +28,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="email">Email</label>  
 									<div class="col-md-6">
-										<input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
+										<input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="" value='gku@ornl.gov'>
 										<span class="help-block">Please enter you email, used for tracking your job</span>  
 									</div>
 								</div>
@@ -37,7 +37,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="org">Organization</label>  
 									<div class="col-md-6">
-										<input id="org" name="org" type="text" placeholder="Organization" class="form-control input-md">
+										<input id="org" name="org" type="text" placeholder="Organization" class="form-control input-md" value='ORNL'>
 										<span class="help-block">Please enter your school or organization</span>  
 									</div>
 								</div>
@@ -90,6 +90,7 @@
 												<option value="MetaCyc">MetaCyc</option>
 												<option value="Custom">Custom</option>
 											</select>
+											<span class="help-block">MetaCyc file used for this search <a href='/MetaCyc.mdb'> Download File </a></span>  
 										</div>
 									</div>
 
@@ -116,7 +117,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="chargeState">Charge State</label>  
 										<div class="col-md-6">
-											<input id="param1" name="chargeState" type="text" value='1' disabled class="form-control input-md">
+											<input id="param1" name="chargeState" type="text" value='1' readonly class="form-control input-md">
 											<span class="help-block">Please enter Charge State</span>  
 										</div>
 									</div>
@@ -125,7 +126,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="massWindow">Parent Mass Window</label>  
 										<div class="col-md-6">
-											<input id="param1" name="massWindow" type="text" value='0' disabled class="form-control input-md">
+											<input id="param1" name="massWindow" type="text" value='0' readonly class="form-control input-md">
 											<span class="help-block">Please enter Parent Mass Window</span>  
 										</div>
 									</div>
@@ -230,7 +231,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="procs">Number of Processors</label>  
 										<div class="col-md-6">
-											<input id="param1" name="procs" type="text" class="form-control input-md" value='4' disabled required=''>
+											<input id="param1" name="procs" type="text" class="form-control input-md" value='4' readonly required=''>
 											<span class="help-block">Please enter Number of Processors</span>  
 										</div>
 									</div>
@@ -250,7 +251,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="scoreThre">Score Threshold</label>  
 										<div class="col-md-6">
-											<input id="param1" name="scoreThre" type="text" class="form-control input-md" required=''>
+											<input id="param1" name="scoreThre" type="text" value='0.2' class="form-control input-md" required=''>
 											<span class="help-block">Please enter Score Threshold</span>  
 										</div>
 									</div>
@@ -259,7 +260,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="spectralCountThre">Spectral Count Threshold</label>  
 										<div class="col-md-6">
-											<input id="param1" name="spectralCountThre" type="text" class="form-control input-md" required=''>
+											<input id="param1" name="spectralCountThre" type="text" value='3' class="form-control input-md" required=''>
 											<span class="help-block">Please enter Spectral Count Threshold</span>  
 										</div>
 									</div>
@@ -268,7 +269,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="explainPeakThre">Explain Peaks Threshold</label>  
 										<div class="col-md-6">
-											<input id="param1" name="explainPeakThre" type="text" class="form-control input-md" required=''>
+											<input id="param1" name="explainPeakThre" type="text" value='5' class="form-control input-md" required=''>
 											<span class="help-block">Please enter Explain Peaks Threshold</span>  
 										</div>
 									</div>
@@ -277,7 +278,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="deltaThre">Delta Threshold</label>  
 										<div class="col-md-6">
-											<input id="param1" name="deltaThre" type="text" class="form-control input-md" required=''>
+											<input id="param1" name="deltaThre" type="text" value='0.02' class="form-control input-md" required=''>
 											<span class="help-block">Please enter Delta Threshold</span>  
 										</div>
 									</div>

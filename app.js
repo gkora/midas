@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('unifam rocks!'));
+app.use(express.cookieParser('midas rocks!'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
