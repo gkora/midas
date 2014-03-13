@@ -1,0 +1,148 @@
+<% include header.ejs %>
+<div class="container">
+
+	<div class="row">
+		<div class="box">
+			<div>
+				<hr>
+				<h2 class="intro-text text-center"><strong>Output</strong> visualization</h2>
+				<hr>
+
+				<div class="col-sm-offset-1 ">
+					<br/>
+					<div class='row'>
+						<div class='pull-left col-md-4'>
+							Intact Neutral Metabolite
+							<img src="/test/293369/original.jpeg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+						</div>
+						<div class='col-md-6'>
+							<strong style='font-size:20px;'>1-20:1-2-18:3-phosphatidylethanolamine</strong>
+							<br/><br/>
+							<dl class="dl-horizontal">
+								<dt>File Name<dt>
+								<dd>03-day-ctrl-msms-10 pos.FT2<dd>
+
+								<dt>Scan Number<dt>
+								<dd>293369</dd>
+
+								<dt>Score<dt>
+								<dd>0.2659418168</dd>
+
+								<dt>Explained Peaks<dt>
+								<dd>11&gt;20</dd>
+
+								<dt>Parent Mass Error<dt>
+								<dd>-0.00803767116122</dd>
+
+							</dl>
+
+						</div>
+					</div>
+				</div>
+				<hr style='max-width:83%;'>
+				<div class='text-center' style='padding-left:40px;'>
+					<div id='graph'></div>
+				</div>
+				<hr style='max-width:83%;'>
+
+
+
+			</div>
+		</div> <!-- /.box -->
+	</div> <!-- /.row -->
+
+</div><!-- /.container -->
+
+<% include footer.ejs %>
+
+<!-- JavaScript -->
+<script src="/js/jquery-1.10.2.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/dygraph-combined.js"></script>
+<script>
+
+</script>
+
+<script type="text/javascript">
+var g = new Dygraph(document.getElementById("graph"),
+		"X, Identified, Unidentified\n" +
+		"223.186665, 0, 0\n"+
+		"233.186665,0,0\n"+
+		"233.186665,0.0188855506251,0\n"+
+		"233.186665,0,0\n"+
+		"243.2060391,0,0\n"+
+		"243.2060391,0,0.0236487604198\n"+
+		"243.2060391,0,0\n"+
+		"261.2190501,0,0\n"+
+		"261.2190501,0.0670701002749,0\n"+
+		"261.2190501,0,0\n"+
+		"261.2523137,0,0\n"+
+		"261.2523137,0,0.0187673060735\n"+
+		"261.2523137,0,0\n"+
+		"311.2575351,0,0\n"+
+		"311.2575351,0.375833987718,0\n"+
+		"311.2575351,0,0\n"+
+		"335.2567964,0,0\n"+
+		"335.2567964,0.368502821246,0\n"+
+		"335.2567964,0,0\n"+
+"335.3116009,0,0\n"+
+"335.3116009,0,0.0286246951393\n"+
+"335.3116009,0,0\n"+
+"335.3366978,0,0\n"+
+"335.3366978,0.0167177826296,0\n"+
+"335.3366978,0,0\n"+
+"571.4719353,0,0\n"+
+"571.4719353,0.3356351436,0\n"+
+"571.4719353,0,0\n"+
+"571.5545662,0,0\n"+
+"571.5545662,0,0.027724637058\n"+
+"571.5545662,0,0\n"+
+"572.4804986,0,0\n"+
+"572.4804986,0.0230088280348,0\n"+
+"572.4804986,0,0\n"+
+"578.5242677,0,0\n"+
+"578.5242677,0,0.0867009877382\n"+
+"578.5242677,0,0\n"+
+"579.5358531,0,0\n"+
+"579.5358531,0,0.0224956709344\n"+
+"579.5358531,0,0\n"+
+"589.4811001,0,0\n"+
+"589.4811001,1.0,0\n"+
+"589.4811001,0,0\n"+
+"589.5879826,0,0\n"+
+"589.5879826,0,0.0580940558\n"+
+"589.5879826,0,0\n"+
+"589.7772377,0,0\n"+
+"589.7772377,0,0.0183566684206\n"+
+"589.7772377,0,0\n"+
+"590.4864347,0,0\n"+
+"590.4864347,0.0507382781979,0\n"+
+"590.4864347,0,0\n"+
+"733.5376364,0,0\n"+
+"733.5376364,0,0.0197922564202\n"+
+"733.5376364,0,0\n"+
+"751.543675,0,0\n"+
+"751.543675,0.0206170271819,0\n"+
+"751.543675,0,0\n"+
+"768.5564585,0,0\n"+
+"768.5564585,0.255972760964,0\n"+
+"768.5564585,0,0\n"+
+"778.5564585, 0, 0\n",
+{
+	legend: 'always',
+					animatedZooms: true,
+					drawGrid: false,
+					height: 600,
+					width: 1000,
+					colors: ["red", "black"],
+					xlabel: "m/z",
+					ylabel: "relative intensity",
+					displayAnnotations: true,
+					title: 'tandem mass spectrum'
+});
+</script>
+
+
+</body>
+</html>

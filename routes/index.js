@@ -1,4 +1,5 @@
 
+
 /*
  * GET home page.
  */
@@ -260,4 +261,21 @@ exports.locateWithId = function(req, res){
 			}
 		}
 	});
+};
+
+exports.viz = function(req, res){
+
+	var vizContentFile = path.join(__dirname, '../public/test/all.json');
+	console.log(vizContentFile);
+
+	var vizContent = JSON.parse(fs.readFileSync(vizContentFile));
+
+	console.dir(vizContent);
+
+  res.render('vizOutputIndex', { vizContent: vizContent });
+
+};
+
+exports.vizdetails = function(req, res){
+  res.render('vizOutputDetails'); 
 };

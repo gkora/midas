@@ -1,0 +1,73 @@
+<% include header.ejs %>
+<div class="container">
+
+	<div class="row">
+		<div class="box">
+			<div>
+				<hr>
+				<h2 class="intro-text text-center"><strong>Output</strong> visualization</h2>
+				<hr>
+
+
+
+					<div class='col-md-offset-1'>
+
+						<% 
+						for( var i = 0; i < vizContent.AllData.length; i++ ) {
+						%>
+							
+							<div class="col-sm-offset-1 ">
+								<br/>
+								<div class='row'>
+									<div class='pull-left col-md-4'>
+										<img src="/test/<%= vizContent.AllData[i].Data.Intact_Neutral_Metabolite %>" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+									</div>
+									<div class='col-md-6'>
+										<strong style='font-size:20px;'><%= vizContent.AllData[i].Data.Name %></strong>
+										<dl class="dl-horizontal">
+											<dt>File Name<dt>
+											<dd><%= vizContent.AllData[i].Data.File_Name %><dd>
+
+											<dt>Scan Number<dt>
+											<dd><%= vizContent.AllData[i].Data.Scan_Number %></dd>
+											
+											<dt>Score<dt>
+											<dd><%= vizContent.AllData[i].Data.Score %></dd>
+
+											<dt>Explained Peaks<dt>
+											<dd><%= vizContent.AllData[i].Data.Explained_Peaks %></dd>
+
+											<dt>Parent Mass Error<dt>
+											<dd><%= vizContent.AllData[i].Data.Parent_Mass_Error %></dd>
+											<br/>
+											<a class="btn btn-success btn-lg" href="">Details</a> 
+
+										</dl>
+
+									</div>
+								</div>
+							</div>
+							<hr style='max-width:83%;'>
+
+						<% } %>
+
+					</div>
+
+			</div>
+		</div> <!-- /.box -->
+	</div> <!-- /.row -->
+
+</div><!-- /.container -->
+
+<% include footer.ejs %>
+
+<!-- JavaScript -->
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+	$('#jobInputs').validate();
+</script>
+
+</body>
+</html>

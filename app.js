@@ -8,6 +8,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
+
 var app = express();
 
 app.locals.moment = require('moment');
@@ -39,6 +40,8 @@ app.get('/locate/:id', routes.locateWithId);
 app.get('/locate', routes.locate);
 app.post('/locate', routes.locatepost);
 app.post('/searchdone', routes.searchdone);
+app.get('/viz', routes.viz);
+app.get('/vizdetails', routes.vizdetails);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

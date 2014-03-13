@@ -1,0 +1,117 @@
+{"AllData" :[
+{
+"Data":{
+"Intact_Neutral_Metabolite" : "310739/original.jpeg","Parent_Mass_Error" : -0.00616666099972,"Explained_Peaks" : "12>20","Score" : 0.495021836102,"Name" : "1-20:0-2-18:2-phosphatidylethanolamine","File_Name" : "03-day-ctrl-msms-10 pos.FT2","Scan_Number" : "310739", "javacriptcode" : "310739/javascript_code.txt"},
+"Table":[
+{"m/z" : 311.2550519,"relative_intensity" : 0.408563773241,"H-offset" : 0,"m/z_error" : -0.00356807999998,"fragment_level" : 3,"structure" : "310739/fragment_0.jpeg"}
+,
+{"m/z" : 311.2926709,"relative_intensity" : 0.0680800988033,"H-offset" : 0,"m/z_error" : -0.002334588,"fragment_level" : 1,"structure" : "310739/fragment_1.jpeg"}
+,
+{"m/z" : 312.2607994,"relative_intensity" : 0.0750603829845,"H-offset" : 1,"m/z_error" : -0.00564558000002,"fragment_level" : 3,"structure" : "310739/fragment_2.jpeg"}
+,
+{"m/z" : 313.2740287,"relative_intensity" : 1.0,"H-offset" : 2,"m/z_error" : -0.000241280000012,"fragment_level" : 3,"structure" : "310739/fragment_3.jpeg"}
+,
+{"m/z" : 337.2750288,"relative_intensity" : 0.618515591144,"H-offset" : 1,"m/z_error" : 0.000758788000041,"fragment_level" : 2,"structure" : "310739/fragment_4.jpeg"}
+,
+{"m/z" : 337.3204273,"relative_intensity" : 0.054338202984,"H-offset" : 0,"m/z_error" : 0.00977174800005,"fragment_level" : 3,"structure" : "310739/fragment_5.jpeg"}
+,
+{"m/z" : 338.2749189,"relative_intensity" : 0.103073224796,"H-offset" : 2,"m/z_error" : -0.00717611199991,"fragment_level" : 2,"structure" : "310739/fragment_6.jpeg"}
+,
+{"m/z" : 339.2862433,"relative_intensity" : 0.242746325205,"H-offset" : 0,"m/z_error" : -0.00367680799991,"fragment_level" : 3,"structure" : "310739/fragment_7.jpeg"}
+,
+{"m/z" : 574.4973927,"relative_intensity" : 0.150681404251,"H-offset" : 0,"m/z_error" : 0.00128210800005,"fragment_level" : 2,"structure" : "310739/fragment_8.jpeg"}
+,
+{"m/z" : 575.5064565,"relative_intensity" : 0.686494115857,"H-offset" : 1,"m/z_error" : 0.00252090800006,"fragment_level" : 2,"structure" : "310739/fragment_9.jpeg"}
+,
+{"m/z" : 771.5768364,"relative_intensity" : 0.0610124171313,"H-offset" : 0,"m/z_error" : -0.000968814000203,"fragment_level" : 0,"structure" : "310739/fragment_10.jpeg"}
+,
+{"m/z" : 772.5877653,"relative_intensity" : 0.502803315574,"H-offset" : 1,"m/z_error" : 0.00213508599973,"fragment_level" : 0,"structure" : "310739/fragment_11.jpeg"}
+]},
+{
+"Data":{
+"Intact_Neutral_Metabolite" : "293369/original.jpeg","Parent_Mass_Error" : -0.00803767116122,"Explained_Peaks" : "11>20","Score" : 0.2659418168,"Name" : "1-20:1-2-18:3-phosphatidylethanolamine","File_Name" : "03-day-ctrl-msms-10 pos.FT2","Scan_Number" : "293369", "javacriptcode" : "293369/javascript_code.txt"},
+"Table":[
+{"m/z" : 233.186665,"relative_intensity" : 0.0188855506251,"H-offset" : 1,"m/z_error" : -0.00387538799998,"fragment_level" : 2,"structure" : "293369/fragment_0.jpeg"}
+,
+{"m/z" : 261.2190501,"relative_intensity" : 0.0670701002749,"H-offset" : 0,"m/z_error" : -0.00279044799998,"fragment_level" : 1,"structure" : "293369/fragment_1.jpeg"}
+,
+{"m/z" : 311.2575351,"relative_intensity" : 0.375833987718,"H-offset" : 2,"m/z_error" : -0.001084816,"fragment_level" : 3,"structure" : "293369/fragment_2.jpeg"}
+,
+{"m/z" : 335.2567964,"relative_intensity" : 0.368502821246,"H-offset" : 1,"m/z_error" : -0.00182354799995,"fragment_level" : 2,"structure" : "293369/fragment_3.jpeg"}
+,
+{"m/z" : 335.3366978,"relative_intensity" : 0.0167177826296,"H-offset" : 1,"m/z_error" : 0.00530683600005,"fragment_level" : 3,"structure" : "293369/fragment_4.jpeg"}
+,
+{"m/z" : 571.4719353,"relative_intensity" : 0.3356351436,"H-offset" : 1,"m/z_error" : -0.000700163999909,"fragment_level" : 2,"structure" : "293369/fragment_5.jpeg"}
+,
+{"m/z" : 572.4804986,"relative_intensity" : 0.0230088280348,"H-offset" : 0,"m/z_error" : 3.80720001658e-05,"fragment_level" : 2,"structure" : "293369/fragment_6.jpeg"}
+,
+{"m/z" : 589.4811001,"relative_intensity" : 1.0,"H-offset" : 1,"m/z_error" : -0.00210004799987,"fragment_level" : 2,"structure" : "293369/fragment_7.jpeg"}
+,
+{"m/z" : 590.4864347,"relative_intensity" : 0.0507382781979,"H-offset" : 2,"m/z_error" : -0.00459044799993,"fragment_level" : 2,"structure" : "293369/fragment_8.jpeg"}
+,
+{"m/z" : 751.543675,"relative_intensity" : 0.0206170271819,"H-offset" : 1,"m/z_error" : -0.00791543400021,"fragment_level" : 1,"structure" : "293369/fragment_9.jpeg"}
+,
+{"m/z" : 768.5564585,"relative_intensity" : 0.255972760964,"H-offset" : 1,"m/z_error" : 0.00212841399969,"fragment_level" : 0,"structure" : "293369/fragment_10.jpeg"}
+]},
+{
+"Data":{
+"Intact_Neutral_Metabolite" : "435267/original.jpeg","Parent_Mass_Error" : 0.000455545877273,"Explained_Peaks" : "6>20","Score" : 1.44371081871,"Name" : "hexylamine","File_Name" : "03-day-ctrl-msms-10 pos.FT2","Scan_Number" : "435267", "javacriptcode" : "435267/javascript_code.txt"},
+"Table":[
+{"m/z" : 56.0528566,"relative_intensity" : 0.108888553952,"H-offset" : 0,"m/z_error" : -0.009743656,"fragment_level" : 2,"structure" : "435267/fragment_0.jpeg"}
+,
+{"m/z" : 58.06605693,"relative_intensity" : 0.853446557959,"H-offset" : 0,"m/z_error" : 0.000382674000008,"fragment_level" : 1,"structure" : "435267/fragment_1.jpeg"}
+,
+{"m/z" : 58.08282577,"relative_intensity" : 0.144845708202,"H-offset" : 1,"m/z_error" : 0.00457548200001,"fragment_level" : 1,"structure" : "435267/fragment_2.jpeg"}
+,
+{"m/z" : 59.07097738,"relative_intensity" : 0.0865514455737,"H-offset" : 1,"m/z_error" : -0.00252187599999,"fragment_level" : 1,"structure" : "435267/fragment_3.jpeg"}
+,
+{"m/z" : 74.09866102,"relative_intensity" : 0.102619501085,"H-offset" : 2,"m/z_error" : 0.00168670000001,"fragment_level" : 1,"structure" : "435267/fragment_4.jpeg"}
+,
+{"m/z" : 102.1285804,"relative_intensity" : 1.0,"H-offset" : 1,"m/z_error" : 0.000305920000017,"fragment_level" : 0,"structure" : "435267/fragment_5.jpeg"}
+]},
+{
+"Data":{
+"Intact_Neutral_Metabolite" : "1387769/original.jpeg","Parent_Mass_Error" : 0.00056279867583,"Explained_Peaks" : "8>20","Score" : 1.0853552431,"Name" : "purine","File_Name" : "03-day-ctrl-msms-10 pos.FT2","Scan_Number" : "1387769", "javacriptcode" : "1387769/javascript_code.txt"},
+"Table":[
+{"m/z" : 66.02816097,"relative_intensity" : 0.0298469416596,"H-offset" : 0,"m/z_error" : 0.00636290600001,"fragment_level" : 1,"structure" : "1387769/fragment_0.jpeg"}
+,
+{"m/z" : 67.02745119,"relative_intensity" : 0.150390014468,"H-offset" : 1,"m/z_error" : -0.002171874,"fragment_level" : 1,"structure" : "1387769/fragment_1.jpeg"}
+,
+{"m/z" : 67.0436418,"relative_intensity" : 0.0259236338476,"H-offset" : 2,"m/z_error" : 0.00144270400001,"fragment_level" : 3,"structure" : "1387769/fragment_2.jpeg"}
+,
+{"m/z" : 67.05072283,"relative_intensity" : 0.0318476165165,"H-offset" : 2,"m/z_error" : 0.00852373400001,"fragment_level" : 3,"structure" : "1387769/fragment_3.jpeg"}
+,
+{"m/z" : 93.0429205,"relative_intensity" : 0.0776219151414,"H-offset" : 2,"m/z_error" : -0.00235259599999,"fragment_level" : 2,"structure" : "1387769/fragment_4.jpeg"}
+,
+{"m/z" : 94.04155381,"relative_intensity" : 0.424483063426,"H-offset" : 1,"m/z_error" : 0.00103171400001,"fragment_level" : 1,"structure" : "1387769/fragment_5.jpeg"}
+,
+{"m/z" : 94.05819604,"relative_intensity" : 0.0312374829239,"H-offset" : 2,"m/z_error" : 0.00509791200001,"fragment_level" : 2,"structure" : "1387769/fragment_6.jpeg"}
+,
+{"m/z" : 121.0512319,"relative_intensity" : 1.0,"H-offset" : 1,"m/z_error" : -0.000189227999982,"fragment_level" : 0,"structure" : "1387769/fragment_7.jpeg"}
+]},
+{
+"Data":{
+"Intact_Neutral_Metabolite" : "1476805/original.jpeg","Parent_Mass_Error" : 0.000823375273427,"Explained_Peaks" : "11>20","Score" : 1.32055804055,"Name" : "n(&alpha;),n(&alpha;),n(&alpha;)-trimethyl-L-histidine","File_Name" : "03-day-ctrl-msms-10 pos.FT2","Scan_Number" : "1476805", "javacriptcode" : "1476805/javascript_code.txt"},
+"Table":[
+{"m/z" : 60.08117294,"relative_intensity" : 0.636153613552,"H-offset" : 1,"m/z_error" : -0.000151347999989,"fragment_level" : 1,"structure" : "1476805/fragment_0.jpeg"}
+,
+{"m/z" : 68.05090491,"relative_intensity" : 0.128935310535,"H-offset" : 1,"m/z_error" : 0.000880750000007,"fragment_level" : 3,"structure" : "1476805/fragment_1.jpeg"}
+,
+{"m/z" : 95.06001812,"relative_intensity" : 1.0,"H-offset" : 1,"m/z_error" : -0.000905071999995,"fragment_level" : 2,"structure" : "1476805/fragment_2.jpeg"}
+,
+{"m/z" : 129.0870275,"relative_intensity" : 0.161130398996,"H-offset" : 2,"m/z_error" : 0.00804897200001,"fragment_level" : 2,"structure" : "1476805/fragment_3.jpeg"}
+,
+{"m/z" : 139.0526121,"relative_intensity" : 0.112791279297,"H-offset" : 1,"m/z_error" : 0.00185966800001,"fragment_level" : 1,"structure" : "1476805/fragment_4.jpeg"}
+,
+{"m/z" : 141.0675269,"relative_intensity" : 0.177444851895,"H-offset" : 1,"m/z_error" : 0.001124404,"fragment_level" : 3,"structure" : "1476805/fragment_5.jpeg"}
+,
+{"m/z" : 154.1316563,"relative_intensity" : 0.658022364398,"H-offset" : 1,"m/z_error" : -0.00276617999998,"fragment_level" : 1,"structure" : "1476805/fragment_6.jpeg"}
+,
+{"m/z" : 155.1330612,"relative_intensity" : 0.135618081718,"H-offset" : 2,"m/z_error" : -0.00918627999999,"fragment_level" : 1,"structure" : "1476805/fragment_7.jpeg"}
+,
+{"m/z" : 155.1458851,"relative_intensity" : 0.108158780326,"H-offset" : 2,"m/z_error" : 0.00363762000001,"fragment_level" : 1,"structure" : "1476805/fragment_8.jpeg"}
+,
+{"m/z" : 198.1224579,"relative_intensity" : 0.721741598852,"H-offset" : 1,"m/z_error" : -0.00179381999999,"fragment_level" : 0,"structure" : "1476805/fragment_9.jpeg"}
+,
+{"m/z" : 199.1233767,"relative_intensity" : 0.100418769141,"H-offset" : 2,"m/z_error" : -0.00870001999999,"fragment_level" : 0,"structure" : "1476805/fragment_10.jpeg"}
+]}]}
