@@ -23,6 +23,7 @@
     "fs-extra": "~0.8.1",
     "yaml": "^0.2.3",
     "ini": "^1.1.0",
-    "moment": "^2.5.1"
+    "moment": "^2.5.1",
+    "midasWorker": "git+ssh://git@gitlab.ornl.gov/koragh/midasworker.git"
   }
 }
