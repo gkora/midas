@@ -39,7 +39,7 @@ app.post('/job', routes.jobpost);
 app.get('/locate/:id', routes.locateWithId);
 app.get('/locate', routes.locate);
 app.post('/locate', routes.locatepost);
-app.post('/searchdone', routes.searchdone);
+app.post('/done', routes.done);
 app.get('/viz', routes.viz);
 app.get('/vizdetails', routes.vizdetails);
 

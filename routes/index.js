@@ -14,6 +14,9 @@ var mail 	 = require('nodemailer');
 var fs 	 	 = require('fs-extra');
 var ini 	 = require('ini');
 
+var MidasWorker = require('midasWorker');
+
+
 var Datastore = require('nedb')
   , db = new Datastore({ filename: path.join(__dirname, '../', CONFIG.Database.location), autoload: true });
 
@@ -88,9 +91,9 @@ exports.jobpost = function(req, res) {
 					newJob.statuses.push( { state: 'Copied viz input file into job directory', time: new Date().getTime() } );
 				}
 
-				callback(null, 'Copied files into job directory');
+				// Take it out whe you enable copying 
+				//callback(null, 'Copied files into job directory');
 
-				/*
 				fs.copy(newJob.inputFile.path, path.join(newJob.jobDirectory, newJob.inputFile.name), function (err) {
 					if (err) {
 						callback(err, null);
@@ -99,7 +102,6 @@ exports.jobpost = function(req, res) {
 						callback(null, 'Copied input file into job directory');
 					}
 				});
-				*/
 			},
 			
 			// Send email to the user
@@ -114,8 +116,7 @@ exports.jobpost = function(req, res) {
 					html: body
 				}
 				// Take it out later'
-				callback(null, "Message sent: Dummy ");
-				/*
+				//callback(null, "Message sent: Dummy ");
 				transport.sendMail(mailOptions, function(err, response){
 					if(err){
 						callback(err, null);
@@ -124,7 +125,6 @@ exports.jobpost = function(req, res) {
 						callback(null, "Message sent: " + response.message);
 					}
 				});
-				*/
 
 			},
 
@@ -179,6 +179,9 @@ exports.jobpost = function(req, res) {
 
 			// Save the data to the db
 			function(callback) {
+
+				newJob.statuses.push( { state: 'Job execution started', time: new Date().getTime() } );
+
 				db.insert(newJob, function (err, newJob) {
 					if(err){
 						callback(err, null);
@@ -192,7 +195,54 @@ exports.jobpost = function(req, res) {
 			function(callback) {
 
 				if ( req.body.jobType === 'Search' ) {
-					newJob.statuses.push( { state: 'Job execution started', time: new Date().getTime() } );
+
+					var search = new MidasWorker();
+
+					var jobDetails = {
+						jobDirectory : newJob.jobDirectory
+						, jobId : newJob.id
+						, inputFileName : newJob.inputFile.name
+					};
+
+					search.prepSearch(jobDetails, function(err, result) {
+						if( err ) {
+							console.log('Error while performing search prep.');
+							callback('Error while performing search prep.');
+						} else {
+							console.log('Prep work done.');
+							search.execSearch(function(error, result2) {
+								if (error) {
+									console.log('Error executing search job');
+									callback('Error executing search job');
+								} else {
+
+
+									// TODO:
+									//result2 is pid of the job, add it back to newJob and save it.
+									//
+									console.log('Searching done.');
+									console.log('Need to log the pid');
+									console.dir(newJob);
+									callback(null, 'New submitted for execution');
+								}
+							});
+						}
+
+					});
+
+
+
+					// Execute the search job
+				} else if ( req.body.jobType === 'Filter' ) {
+					// Execute the filter job
+				} else if ( req.body.jobType === 'Visualize' ) {
+					// Execute the visualize job
+				} else if ( req.body.jobType === 'SearchFilter' ) {
+					// Execute the searchFilter job
+				} else if ( req.body.jobType === 'FilterVisualize' ) {
+					// Execute the filterVisualize job
+				} else if ( req.body.jobType === 'SearchFilterVisualize' ) {
+					// Execute the searchFilterVisualize job
 				}
 			}
 			], 
@@ -211,7 +261,7 @@ exports.locate = function(req, res){
   res.render('locate'); 
 };
 
-exports.searchdone = function(req, res){
+exports.done = function(req, res){
 
 	db.findOne({ id: req.body.id }, function (err, doc) {
 
@@ -220,7 +270,7 @@ exports.searchdone = function(req, res){
 		} else {
 			if ( doc ) {
 
-				doc.statuses.push( { state: 'Search job complete', time: new Date().getTime() } );
+				doc.statuses.push( { state: 'Job complete', time: new Date().getTime() } );
 			} else {
 				console.log(err + ' : Error registering the job completion');
 			}
@@ -277,5 +327,11 @@ exports.viz = function(req, res){
 };
 
 exports.vizdetails = function(req, res){
-  res.render('vizOutputDetails'); 
+
+	var vizContentFile = path.join(__dirname, '../public/test/all.json');
+
+	var vizContent = JSON.parse(fs.readFileSync(vizContentFile));
+
+  res.render('vizOutputDetails', { vizContent: vizContent });
+
 };

@@ -13,4 +13,14 @@ System:
     subject: 'MIDAS: New Job Request'
   Database:
     location: '/database/midas.db'
+  Search:
+    source: '/home/gku/.bashrc'
+    executableLocation: '/home/yf1/project/MIDAS/MIDAS.py'
+    server: 'http://localhost/done'
+  Filter:
+    source: '/home/yf1/project/Pick/pick_promising_predictions.py'
+    server: 'http://localhost/done'
+  Visualization:
+    source: '/home/yf1/project/Visulization/visulization.py'
+    server: 'http://localhost/done'
 

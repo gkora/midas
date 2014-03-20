@@ -1,4 +1,9 @@
 <% include header.ejs %>
+<style type="text/css" media="screen">
+td {
+	vertical-align:middle;
+}
+</style>
 <div class="container">
 
 	<div class="row">
@@ -44,6 +49,46 @@
 					<div id='graph'></div>
 				</div>
 				<hr style='max-width:83%;'>
+				<div style='margin:90px;'>
+					<strong><span class='text-success'> Identified Peaks</span> </strong><br/><br/>
+					<table class='table' style='vertical-align:middle;'>
+
+						<thead>
+							<tr>
+								<th>m/z</th>
+								<th>Relative Intensity</th>
+								<th>H-Offset</th>
+								<th>m/z Error</th>
+								<th>Fragment Level</th>
+								<th>Structure</th>
+							</tr>
+						</thead>
+
+						<% 
+						var table = vizContent.AllData[0].Table;
+						var v1 = "m/z";
+						var v2 = "relative_intensity";
+						var v3 = "H-offset";
+						var v4 = "m/z_error";
+						var v5 = "fragment_level";
+						var v6 = "structure";
+
+						for( var i = 0; i < table.length; i++ ) {
+						console.dir((table[i])[v1]);
+						%>
+						<tr style='vertical-align:middle;'>
+							<td style='vertical-align:middle;' ><%= (table[i])[v1] %></td>
+							<td style='vertical-align:middle;' ><%= (table[i])[v2] %></td>
+							<td style='vertical-align:middle;' ><%= (table[i])[v3] %></td>
+							<td style='vertical-align:middle;' ><%= (table[i])[v4] %></td>
+							<td style='vertical-align:middle;' ><%= (table[i])[v5] %></td>
+							<td style='vertical-align:middle;' >
+								<img src="/test/<%= (table[i])[v6] %>" alt="post img" class="text-center img-responsive thumb margin10 img-thumbnail" style='width:30%;'>
+							</td>
+						</tr>
+						<% } %>
+					</table>
+				</div> <!-- /table enclosing -->
 
 
 
@@ -64,85 +109,7 @@
 
 </script>
 
-<script type="text/javascript">
-var g = new Dygraph(document.getElementById("graph"),
-		"X, Identified, Unidentified\n" +
-		"223.186665, 0, 0\n"+
-		"233.186665,0,0\n"+
-		"233.186665,0.0188855506251,0\n"+
-		"233.186665,0,0\n"+
-		"243.2060391,0,0\n"+
-		"243.2060391,0,0.0236487604198\n"+
-		"243.2060391,0,0\n"+
-		"261.2190501,0,0\n"+
-		"261.2190501,0.0670701002749,0\n"+
-		"261.2190501,0,0\n"+
-		"261.2523137,0,0\n"+
-		"261.2523137,0,0.0187673060735\n"+
-		"261.2523137,0,0\n"+
-		"311.2575351,0,0\n"+
-		"311.2575351,0.375833987718,0\n"+
-		"311.2575351,0,0\n"+
-		"335.2567964,0,0\n"+
-		"335.2567964,0.368502821246,0\n"+
-		"335.2567964,0,0\n"+
-"335.3116009,0,0\n"+
-"335.3116009,0,0.0286246951393\n"+
-"335.3116009,0,0\n"+
-"335.3366978,0,0\n"+
-"335.3366978,0.0167177826296,0\n"+
-"335.3366978,0,0\n"+
-"571.4719353,0,0\n"+
-"571.4719353,0.3356351436,0\n"+
-"571.4719353,0,0\n"+
-"571.5545662,0,0\n"+
-"571.5545662,0,0.027724637058\n"+
-"571.5545662,0,0\n"+
-"572.4804986,0,0\n"+
-"572.4804986,0.0230088280348,0\n"+
-"572.4804986,0,0\n"+
-"578.5242677,0,0\n"+
-"578.5242677,0,0.0867009877382\n"+
-"578.5242677,0,0\n"+
-"579.5358531,0,0\n"+
-"579.5358531,0,0.0224956709344\n"+
-"579.5358531,0,0\n"+
-"589.4811001,0,0\n"+
-"589.4811001,1.0,0\n"+
-"589.4811001,0,0\n"+
-"589.5879826,0,0\n"+
-"589.5879826,0,0.0580940558\n"+
-"589.5879826,0,0\n"+
-"589.7772377,0,0\n"+
-"589.7772377,0,0.0183566684206\n"+
-"589.7772377,0,0\n"+
-"590.4864347,0,0\n"+
-"590.4864347,0.0507382781979,0\n"+
-"590.4864347,0,0\n"+
-"733.5376364,0,0\n"+
-"733.5376364,0,0.0197922564202\n"+
-"733.5376364,0,0\n"+
-"751.543675,0,0\n"+
-"751.543675,0.0206170271819,0\n"+
-"751.543675,0,0\n"+
-"768.5564585,0,0\n"+
-"768.5564585,0.255972760964,0\n"+
-"768.5564585,0,0\n"+
-"778.5564585, 0, 0\n",
-{
-	legend: 'always',
-					animatedZooms: true,
-					drawGrid: false,
-					height: 600,
-					width: 1000,
-					colors: ["red", "black"],
-					xlabel: "m/z",
-					ylabel: "relative intensity",
-					displayAnnotations: true,
-					title: 'tandem mass spectrum'
-});
-</script>
-
+<% include ../public/test/293369/javascript_code.txt %>
 
 </body>
 </html>
