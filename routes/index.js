@@ -313,6 +313,42 @@ exports.locateWithId = function(req, res){
 	});
 };
 
+exports.resultsWithId = function(req, res){
+	
+	db.findOne({ id: req.params.id }, function (err, doc) {
+		if ( err ) {
+			console.log(err);
+			res.render('results', {id: null, job: null}); 
+		} else {
+			if ( doc ) {
+				console.dir(doc);
+				var files = fs.readdirSync(doc.jobDirectory);
+				res.render('results', {id: req.params.id, job: doc, files: files}); 
+			} else {
+				res.render('results', {id: null, job: null}); 
+			}
+		}
+	});
+};
+
+exports.resultspost = function(req, res){
+	
+	db.findOne({ id: req.body.id }, function (err, doc) {
+		if ( err ) {
+			console.log(err);
+			res.render('results', {id: null, job: null}); 
+		} else {
+			if ( doc ) {
+				console.dir(doc);
+				var files = fs.readdirSync(doc.jobDirectory);
+				res.render('results', {id: req.body.id, job: doc, files: files}); 
+			} else {
+				res.render('results', {id: null, job: null}); 
+			}
+		}
+	});
+};
+
 exports.viz = function(req, res){
 
 	var vizContentFile = path.join(__dirname, '../public/test/all.json');

@@ -34,14 +34,21 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+
 app.get('/job', routes.job);
 app.post('/job', routes.jobpost);
-app.get('/locate/:id', routes.locateWithId);
+
 app.get('/locate', routes.locate);
+app.get('/locate/:id', routes.locateWithId);
 app.post('/locate', routes.locatepost);
-app.post('/done', routes.done);
+
+app.get('/results/:id', routes.resultsWithId);
+app.get('/results', routes.resultspost);
+
 app.get('/viz', routes.viz);
 app.get('/vizdetails', routes.vizdetails);
+
+app.post('/done', routes.done);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -4,7 +4,7 @@
         <div class="box">
           <div>
             <hr>
-            <h2 class="intro-text text-center">Searching <strong>Job</strong></h2>
+            <h2 class="intro-text text-center">Job <strong>Results</strong></h2>
             <hr>
 						<div class='text-center'>
 							<%
@@ -22,34 +22,29 @@
 									Name <strong><%= job.name %> </strong>  <span class='small muted'><%= job.org %> </span> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
 									Email <strong><%= job.email %></strong> 
 									<br/> <br/> <br/>
-
-									<a href="/results/<%= id %>" class="btn btn-success btn-lg">Job Results</a>
-									<br/> <br/> <br/>
 								</div>
 
 							</div> <!-- job inputs -->
 							<div> <!-- start of current status -->
-								<h6> Current Status </h6><br/>
+								<h6> Downloadable Job Files </h6><br/>
 									<%
-									console.log(job.statuses);
-									for (var i = 0; i < job.statuses.length; i++) {
-										var status = job.statuses[i];
-										console.log(status);
+									for (var i = 0; i < files.length; i++) {
+									if ( files[i] !== 'search.sh' ) {
 									%>
-										<div class='text-left col-sm-offset-4'>
-											<span class='text-success'><%= moment(status.time).fromNow() %> <i class="fa fa-check-circle"></i> </span> &nbsp; &nbsp; &nbsp; &nbsp;     <%= status.state %>
+										<div class='text-left col-sm-offset-5'>
+											<%= i + 1 %>. 
+										 	<%= files[i] %>	
+											&nbsp; 
+											<a href='/userData/<%= id %>/<%= files[i] %>'> <i class="fa fa-cloud-download"> </i></a>
 											<br/>
-											<% if ( i !== job.statuses.length - 1  ) { %>
-											&nbsp; &nbsp; &nbsp; &nbsp;     <i class="fa fa-arrow-down"></i>
-											<% } %>
 											<br/>
 										</div>
-									<% } %>
+										<% }} %>
 							</div>
 								<% } else { %>
-								<strong>Job Not Found</strong>, Would you like to try again! <br/><br/>
+								<strong>Job not found</strong>, Would you like to try finding your job again! <br/><br/>
 
-								<form id='locate' class="form-horizontal" enctype="multipart/form-data" method='post' action='/locate'>
+								<form id='locate' class="form-horizontal" enctype="multipart/form-data" method='post' action='/result'>
 									<fieldset>
 
 										<div class='form-group'>
@@ -85,11 +80,10 @@
 <% include footer.ejs %>
 
 <!-- JavaScript -->
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="/js/jquery-1.10.2.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/bootstrap.js"></script>
 <script>
-	$('#jobInputs').validate();
 </script>
 
 </body>
