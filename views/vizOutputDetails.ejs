@@ -8,6 +8,11 @@ td {
 
 	<div class="row">
 		<div class="box">
+			<div class='pull-right'>
+
+				<a class="btn btn-success btn-lg" 
+					href="javascript:history.back();">Go Back</a> 
+			</div>
 			<div>
 				<hr>
 				<h2 class="intro-text text-center"><strong>Output</strong> visualization</h2>
@@ -16,28 +21,29 @@ td {
 				<div class="col-sm-offset-1 ">
 					<br/>
 					<div class='row'>
+						<% var i = slot; %>
 						<div class='pull-left col-md-4'>
 							Intact Neutral Metabolite
-							<img src="/test/293369/original.jpeg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+							<img src="<%= jobDirectory %><%= vizContent.AllData[slot].Data.Intact_Neutral_Metabolite %>" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
 						</div>
 						<div class='col-md-6'>
-							<strong style='font-size:20px;'>1-20:1-2-18:3-phosphatidylethanolamine</strong>
+							<strong style='font-size:20px;'><%= vizContent.AllData[i].Data.Name %></strong>
 							<br/><br/>
 							<dl class="dl-horizontal">
 								<dt>File Name<dt>
-								<dd>03-day-ctrl-msms-10 pos.FT2<dd>
+								<dd><%= vizContent.AllData[i].Data.File_Name %><dd>
 
 								<dt>Scan Number<dt>
-								<dd>293369</dd>
+								<dd><%= vizContent.AllData[i].Data.Scan_Number %></dd>
 
 								<dt>Score<dt>
-								<dd>0.2659418168</dd>
+								<dd><%= vizContent.AllData[i].Data.Score %></dd>
 
 								<dt>Explained Peaks<dt>
-								<dd>11&gt;20</dd>
+								<dd><%= vizContent.AllData[i].Data.Explained_Peaks %></dd>
 
 								<dt>Parent Mass Error<dt>
-								<dd>-0.00803767116122</dd>
+								<dd><%= vizContent.AllData[i].Data.Parent_Mass_Error %></dd>
 
 							</dl>
 
@@ -65,7 +71,7 @@ td {
 						</thead>
 
 						<% 
-						var table = vizContent.AllData[0].Table;
+						var table = vizContent.AllData[slot].Table;
 						var v1 = "m/z";
 						var v2 = "relative_intensity";
 						var v3 = "H-offset";
@@ -83,7 +89,7 @@ td {
 							<td style='vertical-align:middle;' ><%= (table[i])[v4] %></td>
 							<td style='vertical-align:middle;' ><%= (table[i])[v5] %></td>
 							<td style='vertical-align:middle;' >
-								<img src="/test/<%= (table[i])[v6] %>" alt="post img" class="text-center img-responsive thumb margin10 img-thumbnail" style='width:30%;'>
+								<img src="<%= jobDirectory %><%= (table[i])[v6] %>" alt="post img" class="text-center img-responsive thumb margin10 img-thumbnail" style='width:30%;'>
 							</td>
 						</tr>
 						<% } %>

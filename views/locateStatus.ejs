@@ -12,12 +12,12 @@
 								var dd = moment(job.submitTime).fromNow();
 							%>
 							<strong>Job Found</strong><br/>
-							Submited <span class="label label-primary"><%= dd %> </span> <br/></br>
+							Submited <%= dd %> <br/></br>
 							
 							<div> <!-- job inputs -->
 								<h5>Job Inputs</h5>
 								<div>
-									Job Type <strong><%= job.jobType %></strong> 
+									Job Type <span class="label label-primary"><%= job.jobType %></span> 
 									<br/>
 									Name <strong><%= job.name %> </strong>  <span class='small muted'><%= job.org %> </span> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
 									Email <strong><%= job.email %></strong> 

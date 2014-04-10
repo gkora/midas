@@ -232,11 +232,44 @@ exports.jobpost = function(req, res) {
 
 					});
 
-
-
 					// Execute the search job
 				} else if ( req.body.jobType === 'Filter' ) {
 					// Execute the filter job
+
+					var filter = new MidasWorker();
+
+					var jobDetails = {
+						jobDirectory : newJob.jobDirectory
+						, jobId : newJob.id
+						, outputFileName : newJob.filterInputFile.name + '.output'
+						, scoreThreshold : req.body.scoreThre
+						, spectralCountThreshold : req.body.spectralCountThre
+						, explainPeaksThreshold : req.body.explainPeakThre
+						, deltaThreshold : req.body.deltaThre
+					};
+
+					filter.prepFilter(jobDetails, function(err, result) {
+						if( err ) {
+							console.log('Error while performing filter prep.');
+							callback('Error while performing filter prep.');
+						} else {
+							filter.execFilter(function(error, result2) {
+								if (error) {
+									console.log('Error executing filter job');
+									callback('Error executing filter job');
+								} else {
+
+
+									// TODO:
+									//result2 is pid of the job, add it back to newJob and save it.
+									//
+									callback(null, 'New submitted for execution');
+								}
+							});
+						}
+					});
+
+
 				} else if ( req.body.jobType === 'Visualize' ) {
 
 					// Execute the visualize job
@@ -284,8 +317,12 @@ exports.jobpost = function(req, res) {
 			], 
 			function(error, results) {
 				if (error) {
+					console.log('Error occured');
+					console.dir(error);
 					res.render('submitted', { error: error, job: newJob});
 				} else {
+					console.log('No Error');
+					console.dir(results);
 					res.render('submitted', { error: null, job: newJob});
 				}
 	
@@ -349,6 +386,45 @@ exports.locateWithId = function(req, res){
 	});
 };
 
+exports.resultDetails = function(req, res){
+	
+	db.findOne({ id: req.params.id }, function (err, doc) {
+		if ( err ) {
+			console.log(err);
+			res.render('results', {id: null, job: null}); 
+		} else {
+			if ( doc ) {
+
+				if ( doc.jobType === 'Visualize' ) { 
+					
+					var vizInputData = path.join( doc.jobDirectory, 'all.json');
+
+					var vizContentFile = vizInputData;
+
+					console.log(vizContentFile);
+
+					var vizContent = JSON.parse(fs.readFileSync(vizContentFile));
+
+					console.dir(vizContent);
+
+					res.render('vizOutputDetails', 
+							{ id: doc.id, 
+								slot: req.params.slot, 
+								vizContent: vizContent, 
+								jobDirectory: '/userData/' + doc.id + '/' 
+							});
+
+				} else {
+					var files = fs.readdirSync(doc.jobDirectory);
+					res.render('results', {id: req.params.id, job: doc, files: files}); 
+				}
+			} else {
+				res.render('results', {id: null, job: null}); 
+			}
+		}
+	});
+};
+
 exports.resultsWithId = function(req, res){
 	
 	db.findOne({ id: req.params.id }, function (err, doc) {
@@ -357,9 +433,26 @@ exports.resultsWithId = function(req, res){
 			res.render('results', {id: null, job: null}); 
 		} else {
 			if ( doc ) {
-				console.dir(doc);
-				var files = fs.readdirSync(doc.jobDirectory);
-				res.render('results', {id: req.params.id, job: doc, files: files}); 
+
+				if ( doc.jobType === 'Visualize' ) { 
+					
+					var vizInputData = path.join( doc.jobDirectory, 'all.json');
+
+					var vizContentFile = vizInputData;
+
+					console.log(vizContentFile);
+
+					var vizContent = JSON.parse(fs.readFileSync(vizContentFile));
+
+					console.dir(vizContent);
+
+					res.render('vizOutputIndex', 
+							{ id: doc.id, vizContent: vizContent, jobDirectory: '/userData/' + doc.id + '/' });
+
+				} else {
+					var files = fs.readdirSync(doc.jobDirectory);
+					res.render('results', {id: req.params.id, job: doc, files: files}); 
+				}
 			} else {
 				res.render('results', {id: null, job: null}); 
 			}

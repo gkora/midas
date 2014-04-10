@@ -43,6 +43,7 @@ app.get('/locate/:id', routes.locateWithId);
 app.post('/locate', routes.locatepost);
 
 app.get('/results/:id', routes.resultsWithId);
+app.get('/resultdetails/:id/:slot', routes.resultDetails);
 app.get('/results', routes.resultspost);
 
 app.get('/viz', routes.viz);
