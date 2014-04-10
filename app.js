@@ -48,6 +48,8 @@ app.get('/results', routes.resultspost);
 app.get('/viz', routes.viz);
 app.get('/vizdetails', routes.vizdetails);
 
+app.get('/download', routes.download);
+
 app.post('/done', routes.done);
 
 http.createServer(app).listen(app.get('port'), function(){

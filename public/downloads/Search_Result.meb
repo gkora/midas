@@ -1,0 +1,60 @@
+#	##################################################
+#	##### Parameters for Metabolite identification ###
+#	##################################################
+#	[Metabolite_Identification]
+#	
+#	# Filename of the metabolite database
+#	Metabolite_Database = test/sample2/Sample.mdb
+#	
+#	# Presumed polarity if not provided in the input file. Options: "positive" and "negative"
+#	Default_Polarity = positive
+#	
+#	# Presumed charge state for unknown charge state
+#	Default_Charge_State = 1
+#	
+#	##### Mass_Accuracy #####
+#	
+#	# Mass Windows to be open around parent ion. -->
+#	# Examples: a center window: "0", a center window and an offset window: "-1,0", etc -->
+#	Parent_Mass_Windows = 0
+#	
+#	Positive_Ion_Fragment_Mass_Windows = 0, 1, 2
+#	Negative_Ion_Fragment_Mass_Windows = -2, -1, 0
+#	
+#	# Parent mass tolerance in Da
+#	Mass_Tolerance_Parent_Ion = 0.01
+#	
+#	# Fragment mass tolerance in Da
+#	Mass_Tolerance_Fragment_Ions = 0.01
+#	
+#	# Break ring structures in a metabolite or not: "true" or "false"
+#	Break_rings = true
+#	
+#	# Depth of fragmentation pathways. The valid range is from 1 to 5
+#	Fragmentation_Depth = 3
+#	
+#	# Number of processes the search should initiate. This should be less than the total number of CPU cores.
+#	Number_of_Processes = 35
+#	
+#	
+#
+#	Filename: Filename of the input MS2 file
+#	ScanNumber: Scan number(s). Merged scans will have multiple numbers
+#	PrecursorMZ: precursor m/z
+#	RetentionTime: retention time
+#	ScanType: Scan types, e.g. positive/negative ion mode
+#	Rank: Rank of this identification
+#	ParentMassError: mass error of the parent ion
+#	ExplainedPeaks: e.g. 8>10 means, out of the 10 peaks, 8 are explained by this compound
+#	Score: Score of this identification
+#	Identifier: Identifier from the database
+#	Name: Name from the database
+#	OriginalInChI: Original InChI from the database
+#	IdentifiedInChI: Identified InChI with potential modifications
+#	Modifications: Modifications added to the metabolite
+#	Links: Links from the database
+#
+Filename	ScanNumber	PrecursorMZ	RetentionTime	ScanType	Rank	ParentMassError	ExplainedPeaks	Score	Identifier	Name	OriginalInChI	IdentifiedInChI	Modifications	Links
+Sample.FT2	1198881	161.092208862	1198.873	PositiveIon	1	0.000408381695308	14>20	0.525711330168	MetaCyC_1162	aminoethoxyvinylglycine	InChI=1S/C6H12N2O3/c7-2-4-11-3-1-5(8)6(9)10/h1,3,5H,2,4,7-8H2,(H,9,10)	InChI=1S/C6H12N2O3/c7-2-4-11-3-1-5(8)6(9)10/h1,3,5H,2,4,7-8H2,(H,9,10)	NA	(MetaCyc=CPD-13353)
+Sample.FT2	1198881	161.092208862	1198.873	PositiveIon	2	0.000408381695308	11>20	0.183735557738	MetaCyC_3311	N<sup>5</sup>-methyl-L-glutamine	InChI=1S/C6H12N2O3/c1-8-5(9)3-2-4(7)6(10)11/h4H,2-3,7H2,1H3,(H,8,9)(H,10,11)/t4-/m0/s1	InChI=1S/C6H12N2O3/c1-8-5(9)3-2-4(7)6(10)11/h4H,2-3,7H2,1H3,(H,8,9)(H,10,11)/t4-/m0/s1	NA	(MetaCyc=N5-METHYLGLUTAMINE)
+Sample.FT2	1476805	198.123428345	NA	PositiveIon	1	0.000823375273427	11>20	1.32055804055	MetaCyC_632	n(&alpha;),n(&alpha;),n(&alpha;)-trimethyl-L-histidine	InChI=1S/C9H15N3O2/c1-12(2,3)8(9(13)14)4-7-5-10-6-11-7/h5-6,8H,4H2,1-3H3,(H-,10,11,13,14)/t8-/m0/s1	InChI=1S/C9H15N3O2/c1-12(2,3)8(9(13)14)4-7-5-10-6-11-7/h5-6,8H,4H2,1-3H3,(H-,10,11,13,14)/t8-/m0/s1	NA	(MetaCyc=NALPHANALPHANALPHA-TRIMETHYL-L-H)

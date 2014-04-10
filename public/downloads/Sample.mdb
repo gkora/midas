@@ -1,0 +1,7 @@
+Identifier	Name	InChI	Links
+MetaCyC_632	n(&alpha;),n(&alpha;),n(&alpha;)-trimethyl-L-histidine	InChI=1S/C9H15N3O2/c1-12(2,3)8(9(13)14)4-7-5-10-6-11-7/h5-6,8H,4H2,1-3H3,(H-,10,11,13,14)/t8-/m0/s1	(MetaCyc=NALPHANALPHANALPHA-TRIMETHYL-L-H)
+MetaCyC_1162	aminoethoxyvinylglycine	InChI=1S/C6H12N2O3/c7-2-4-11-3-1-5(8)6(9)10/h1,3,5H,2,4,7-8H2,(H,9,10)	(MetaCyc=CPD-13353)
+MetaCyC_3311	N<sup>5</sup>-methyl-L-glutamine	InChI=1S/C6H12N2O3/c1-8-5(9)3-2-4(7)6(10)11/h4H,2-3,7H2,1H3,(H,8,9)(H,10,11)/t4-/m0/s1	(MetaCyc=N5-METHYLGLUTAMINE)
+
+
+

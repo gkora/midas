@@ -13,6 +13,11 @@
 							Job Id  <strong><%= job.id %> </strong><br/></br>
 							Email sent to <%= job.email %> with URL to track progress.<br/><br/>
 							<h2> Current Status </h2>
+							<%if ( error !== null ) { %>
+
+								<b>Error encountered. Please contact MIDAS support.</b>
+
+							<%} else { %>
 							<center>
 								<table class='text-center pull-center'>
 									<tr>
@@ -35,6 +40,7 @@
 									</tr>
 								</table>
 							</center>
+							<%} %>
 
 
 

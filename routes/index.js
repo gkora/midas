@@ -36,6 +36,7 @@ exports.job = function(req, res){
 
 exports.jobpost = function(req, res) {
 
+
 	var newJob = {};
 
 	newJob.id = uuid.v4();
@@ -54,11 +55,14 @@ exports.jobpost = function(req, res) {
 	newJob.request.UA = req.get('User-Agent');
 	newJob.request.IP = req.ip;
 
+
 	async.series([
 			// Make directory for the job
 			function(callback) {
 				mkdir(newJob.jobDirectory, function (err) {
+
 					if (err) {
+						console.dir(err);
 						callback(err, null);
 					} else {
 						newJob.statuses.push( { state: 'Job Directory Created', time: new Date().getTime() } );
@@ -92,8 +96,9 @@ exports.jobpost = function(req, res) {
 				}
 
 				// Take it out whe you enable copying 
-				//callback(null, 'Copied files into job directory');
+				callback(null, 'Copied files into job directory');
 
+				/*
 				fs.copy(newJob.inputFile.path, path.join(newJob.jobDirectory, newJob.inputFile.name), function (err) {
 					if (err) {
 						callback(err, null);
@@ -102,10 +107,12 @@ exports.jobpost = function(req, res) {
 						callback(null, 'Copied input file into job directory');
 					}
 				});
+				*/
 			},
 			
 			// Send email to the user
 			function(callback) {
+
 				
 				var body = _.template(CONFIG.SMTP.jobReceiveTemplate.content, { 'name': newJob.name, 'id': newJob.id});
 				var mailOptions = {
@@ -161,7 +168,6 @@ exports.jobpost = function(req, res) {
 							ini.stringify(config, section), 
 							function(err) {
 
-						console.dir(err);
 						
 						if (err) {
 							callback(err, null);
@@ -209,7 +215,6 @@ exports.jobpost = function(req, res) {
 							console.log('Error while performing search prep.');
 							callback('Error while performing search prep.');
 						} else {
-							console.log('Prep work done.');
 							search.execSearch(function(error, result2) {
 								if (error) {
 									console.log('Error executing search job');
@@ -220,9 +225,6 @@ exports.jobpost = function(req, res) {
 									// TODO:
 									//result2 is pid of the job, add it back to newJob and save it.
 									//
-									console.log('Searching done.');
-									console.log('Need to log the pid');
-									console.dir(newJob);
 									callback(null, 'New submitted for execution');
 								}
 							});
@@ -236,7 +238,41 @@ exports.jobpost = function(req, res) {
 				} else if ( req.body.jobType === 'Filter' ) {
 					// Execute the filter job
 				} else if ( req.body.jobType === 'Visualize' ) {
+
 					// Execute the visualize job
+					var visualize = new MidasWorker();
+
+					var jobDetails = {
+						jobDirectory : newJob.jobDirectory
+						, jobId : newJob.id
+						, inputFileName : newJob.vizInputFile.name
+					};
+
+					visualize.prepViz(jobDetails, function(err, result) {
+						if( err ) {
+							console.log('Error while performing visualize prep.');
+							callback('Error while performing visualize prep.');
+						} else {
+							visualize.execViz(function(error, result2) {
+								if (error) {
+									console.log('Error executing visualize job');
+									callback('Error executing visualize job');
+								} else {
+
+
+									// TODO:
+									//result2 is pid of the job, add it back to newJob and save it.
+									//
+									callback(null, 'New submitted for execution');
+								}
+							});
+						}
+					});
+
+
+
+
+
 				} else if ( req.body.jobType === 'SearchFilter' ) {
 					// Execute the searchFilter job
 				} else if ( req.body.jobType === 'FilterVisualize' ) {
@@ -371,3 +407,8 @@ exports.vizdetails = function(req, res){
   res.render('vizOutputDetails', { vizContent: vizContent });
 
 };
+
+exports.download = function(req, res){
+  res.render('download'); 
+};
+
