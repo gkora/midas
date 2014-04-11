@@ -19,7 +19,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="name">Name</label>  
 									<div class="col-md-6">
-										<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="" value='Guru'>
+										<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="" value=''>
 										<span class="help-block">Please enter your name</span>  
 									</div>
 								</div>
@@ -28,7 +28,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="email">Email</label>  
 									<div class="col-md-6">
-										<input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="" value='gku@ornl.gov'>
+										<input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="" value=''>
 										<span class="help-block">Please enter you email, used for tracking your job</span>  
 									</div>
 								</div>
@@ -37,7 +37,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="org">Organization</label>  
 									<div class="col-md-6">
-										<input id="org" name="org" type="text" placeholder="Organization" class="form-control input-md" value='ORNL'>
+										<input id="org" name="org" type="text" placeholder="Organization" class="form-control input-md" value=''>
 										<span class="help-block">Please enter your school or organization</span>  
 									</div>
 								</div>
@@ -53,9 +53,11 @@
 											<option value='Search' >Search</option>
 											<option value='Filter' >Filter</option>
 											<option value='Visualize' >Visualize</option>
+											<!--
 											<option value='FilterVisualize'>Filter and Visualize</option>
 											<option value='SearchFilter'>Search and Filter</option>
 											<option value='SearchFilterVisualize'>Search, Filter and Visualize</option>
+											-->
 										</select>
 									</div>
 								</div>
@@ -315,9 +317,9 @@
 		<% include footer.ejs %>
 
 <!-- JavaScript -->
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="/js/jquery-1.10.2.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/bootstrap.js"></script>
 <script>
 	$('#jobInputs').validate();
 	$('#databaseType').on('change', function() {

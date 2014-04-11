@@ -442,7 +442,11 @@ exports.resultsWithId = function(req, res){
 
 					console.log(vizContentFile);
 
-					var vizContent = JSON.parse(fs.readFileSync(vizContentFile));
+					var test1 = fs.readFileSync(vizContentFile);
+					console.log(test1);
+
+					//var vizContent = JSON.parse(fs.readFileSync(vizContentFile));
+					var vizContent = JSON.parse(test1);
 
 					console.dir(vizContent);
 
