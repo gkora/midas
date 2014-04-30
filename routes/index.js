@@ -147,7 +147,7 @@ exports.jobpost = function(req, res) {
 				if ( req.body.jobType === 'Search') {
 
 					if ( req.body.database === 'MetaCyc' ) {
-						config.Metabolite_Database = path.join(__dirname, CONFIG.metacycLocation);
+						config.Metabolite_Database = path.join(__dirname, '../', CONFIG.metacycLocation);
 					} else {
 						config.Metabolite_Database = path.join(newJob.jobDirectory, req.files.databaseInputFile.originalFilename );
 					}
@@ -334,21 +334,56 @@ exports.locate = function(req, res){
   res.render('locate'); 
 };
 
+exports.dumpStatus = function(req, res){
+
+	db.findOne({ id: req.params.id }, function (err, doc) {
+		if ( err ) {
+			console.log(err + ' : Error retriving the job');
+			res.send(503);
+		} else {
+			console.dir(doc);
+			res.send(doc);
+		}
+	});
+
+};
 exports.done = function(req, res){
 
+	var state = { state: 'Job complete', time: new Date().getTime() };
+	db.update({ id: req.body.id }, { $push: { statuses: state } }, {}, function (error, numUpdated) {
+		if (error) {
+			console.log(err + ' : Error registering the job completion');
+			res.send(503);
+		} else {
+			console.log('Number of updated rows = ' + numUpdated );
+			res.send(200);
+		}
+	});
+
+
+	/*
 	db.findOne({ id: req.body.id }, function (err, doc) {
 
 		if ( err ) {
 			console.log(err + ' : Error registering the job completion');
+			res.send(503);
 		} else {
 			if ( doc ) {
-
 				doc.statuses.push( { state: 'Job complete', time: new Date().getTime() } );
+				doc.save(function( error, result) {
+					if (error) {
+						res.send(503);
+					} else {
+						res.send(200);
+					}
+				});
 			} else {
 				console.log(err + ' : Error registering the job completion');
+				res.send(503);
 			}
 		}
 	});
+	*/
 
 };
 

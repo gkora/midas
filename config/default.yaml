@@ -6,10 +6,10 @@ System:
   configSection: 'Metabolite_Identification'
   SMTP:
     server: 'smtp.ornl.gov'
-    from: 'Midas <donotreply@ornl.gov>'
-    name: 'midas-omicsbio.ornl.gov'
+    from: 'Midas <donotreply@omicsbio.org>'
+    name: 'midas.omicsbio.org'
     jobReceiveTemplate: 
-    content: "<html><body><h2>Hello <%= name %></h2> <p>Thank you for using MIDAS resources to identify matabolites.</p> <p>Your job is submitted to the system. The system will execute your job once the resources are available.</p> <p> You can retrieve your submitted job using this URL <a href='http://midas-omicsbio.ornl.gov/locate/<%= id %>' target='_blank'>http://midas-omicsbio.ornl.gov/locate/<%= id %></a></p> <p>You job Id is <%= id %></p> Thank you,<br/> MIDAS Team.</body></html>"
+    content: "<html><body><h2>Hello <%= name %></h2> <p>Thank you for using MIDAS resources to identify matabolites.</p> <p>Your job is submitted to the system. The system will execute your job once the resources are available.</p> <p> You can retrieve your submitted job using this URL <a href='http://midas.omicsbio.org/locate/<%= id %>' target='_blank'>http://midas.omicsbio.org/locate/<%= id %></a></p> <p>You job Id is <%= id %></p> Thank you,<br/> MIDAS Team.</body></html>"
     subject: 'MIDAS: New Job Request'
   Database:
     location: '/database/midas.db'

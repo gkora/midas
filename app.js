@@ -53,6 +53,8 @@ app.get('/download', routes.download);
 
 app.post('/done', routes.done);
 
+app.get('/dumpStatus/:id', routes.dumpStatus);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

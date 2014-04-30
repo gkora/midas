@@ -29,7 +29,10 @@
 								<h6> Downloadable Job Files </h6><br/>
 									<%
 									for (var i = 0; i < files.length; i++) {
-									if ( files[i] !== 'search.sh' ) {
+									if ( files[i] !== 'search.sh' && 
+											 files[i] !== 'viz.sh' &&
+											 files[i] !== 'filter.sh'
+											 ) {
 									%>
 										<div class='text-left col-sm-offset-5'>
 											<%= i + 1 %>. 
