@@ -347,6 +347,7 @@ exports.dumpStatus = function(req, res){
 	});
 
 };
+
 exports.done = function(req, res){
 
 	var state = { state: 'Job complete', time: new Date().getTime() };
