@@ -43,6 +43,8 @@ exports.jobpost = function(req, res) {
 	newJob.submitTime = new Date().getTime();
 	newJob.jobDirectory = path.join(CONFIG.userDataLocation, newJob.id);
 
+    newJob.fileType = req.body.fileType;
+
 	newJob.statuses = [];
 	newJob.statuses.push( { state: 'Online Request Submitted', time: new Date().getTime() } );
 	_.extend(newJob, req.body);
@@ -208,6 +210,7 @@ exports.jobpost = function(req, res) {
 						jobDirectory : newJob.jobDirectory
 						, jobId : newJob.id
 						, inputFileName : newJob.inputFile.name
+                        , fileType : newJob.fileType
 					};
 
 					search.prepSearch(jobDetails, function(err, result) {

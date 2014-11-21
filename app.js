@@ -22,6 +22,10 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.bodyParser());
+
+app.use(express.json({limit: '500mb'}));
+app.use(express.urlencoded({limit: '500mb'}));
+
 app.use(express.methodOverride());
 app.use(express.cookieParser('midas rocks!'));
 app.use(express.session());
