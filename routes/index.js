@@ -450,7 +450,8 @@ exports.resultDetails = function(req, res){
 							{ id: doc.id, 
 								slot: req.params.slot, 
 								vizContent: vizContent, 
-								jobDirectory: '/userData/' + doc.id + '/' 
+								jobDirectory: '/userData/' + doc.id + '/',
+								jcode: '/home/gku/active/userData/' + doc.id + '/' + vizContent.AllData[req.params.slot].Data.Scan_Number + '/javascript_code.txt'
 							});
 
 				} else {
